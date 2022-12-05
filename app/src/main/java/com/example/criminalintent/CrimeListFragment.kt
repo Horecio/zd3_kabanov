@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.criminalintent
 
 import android.os.Bundle
@@ -15,9 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 private const val TAG="CrimeListFragment"
 class CrimeListFragment : Fragment() {
     private lateinit var crimeRecyclerView: RecyclerView
-    private var adapter:CrimeAdapter?=null
-    private val crimeListViewModel:
-            CrimeListViewModel by lazy {
+    private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
+    private val crimeListViewModel:CrimeListViewModel by lazy{
         ViewModelProviders.of(this).get(CrimeListViewModel::class.java)
 
     }
@@ -29,7 +30,7 @@ class CrimeListFragment : Fragment() {
         val view=inflater.inflate(R.layout.fragment_crime_list,container,false)
         crimeRecyclerView=view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager= LinearLayoutManager(context)
-        updateUI()
+        crimeRecyclerView.adapter = adapter
         return view
     }
     private fun updateUI(){

@@ -38,7 +38,7 @@ class CrimeFragment : Fragment() {
         dateButton = view.findViewById(R.id.crime_date) as Button
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
         dateButton.apply {
-            text=crime.date.toString()
+            text = crime.date.toString()
             isEnabled = false
         }
         return view
@@ -46,23 +46,25 @@ class CrimeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
         val titleWatcher = object : TextWatcher
         {
-            override fun beforeTextChanged(sequence: CharSequence?,start: Int,count: Int,after: Int) {
-
+            override fun beforeTextChanged(
+                sequence: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int) {
             }
-
-
-            override fun onTextChanged(sequence: CharSequence?,start: Int,before: Int,count: Int) {
+            override fun onTextChanged(
+                sequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int) {
                 crime.title = sequence.toString()
             }
-
-            override fun afterTextChanged(sequence: Editable?) {
-
+            override fun
+                    afterTextChanged(sequence: Editable?) {
             }
         }
-
         titleField.addTextChangedListener(titleWatcher)
         solvedCheckBox.apply{
             setOnCheckedChangeListener{_,isChecked ->
